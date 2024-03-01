@@ -1,24 +1,26 @@
 const mongoose = require ("mongoose")
-mongoose.connect("mongodb+srv://akshitmittal20:Am%40151220@29feb2024.hhq35ea.mongodb.net/")
+mongoose.connect("mongodb+srv://akshitmittal20:pSD9tpjvHdOlEVax@290224.dl6gadx.mongodb.net/")
 
 const adminSchema = new mongoose.Schema({
-    email: String,
+    username : String,
     password: String,
 })
 
 const userSchema = new mongoose.Schema({
-    email: String,
+    username : String,
     password: String,
-    purchasedCourses: {
+    purchasedCourses: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:'course'
-    }
+    }]
 })
 
 
 const courseSchema = new mongoose.Schema({
     title: String,
-    price: 6000
+    description: String,
+    imageLink: String,
+    price: Number
 })
 
 
@@ -31,29 +33,3 @@ module.exports={
     user,
     course
 }
-
-user.updateOne(
-    {
-        "id":"...."
-    },
-    {
-        $push:{
-            purchasedCourses: courseId
-        }
-    }
-)
-
-user.updateOne({
-    id:"1"
-},{
-    password:"newPassword"
-})
-
-user.updateMany({},{
-    premium:true
-})
-
-user.deleteOne({
-    username:"akshtimittal20@gmail.com"
-})
-
